@@ -29,8 +29,9 @@ class Product(models.Model):
     product_name = models.CharField(max_length=100)
     price = models.BigIntegerField(default=0)
     price_caption = models.CharField(max_length=10)
-    rateing = models.IntegerField(default=2)
+    rateing = models.FloatField(default=2)
     image = models.ImageField(upload_to='product_image',default=None,null=True,blank=True)
+    deal_price = models.BigIntegerField(default=10000)
     def __str__(self):
-            return {self.product_name}
+            return self.product_name
     

@@ -3,7 +3,9 @@ from eapp.models import *
 def index(request):
     highlightdata1 = highlightdata.objects.all()
     offers = offer.objects.all()
-    return render(request, 'eapp/index.html',{'highlightdata1':highlightdata1, 'offers':offers})
+    categories = Categories.objects.all()
+    product = Product.objects.all()
+    return render(request, 'eapp/index.html',{'highlightdata1':highlightdata1, 'offers':offers, 'categories':categories, 'product':product})
 def shop(request):
     return render(request,'eapp/shop.html')
 def detail(request):
