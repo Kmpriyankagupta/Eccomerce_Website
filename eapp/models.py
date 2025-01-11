@@ -32,6 +32,18 @@ class Product(models.Model):
     rateing = models.FloatField(default=2)
     image = models.ImageField(upload_to='product_image',default=None,null=True,blank=True)
     deal_price = models.BigIntegerField(default=10000)
+    
     def __str__(self):
             return self.product_name
+        
+# class Cart(models.Model):
+#     product_id = models.ForeignKey("Product",  on_delete=models.CASCADE ,to_field='product_name')
+#     cont = 
+
+class register_company(models.Model):
+    name = models.CharField(max_length=100, default='name')
+    image = models.ImageField(upload_to='company',default=None,null=True,blank=True)
+    
+    def __str__(self):
+        return self.name
     
