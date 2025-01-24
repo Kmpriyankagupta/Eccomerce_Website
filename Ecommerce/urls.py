@@ -14,6 +14,7 @@ urlpatterns = [
     path('cart/', cart),
     path('checkout/', checkout),
     path('contact/', contact),
+    path('productapi/',get_product_data),
     
 ]
 if settings.DEBUG:

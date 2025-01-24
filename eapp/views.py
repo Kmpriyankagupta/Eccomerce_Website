@@ -1,5 +1,5 @@
 from django.shortcuts import render
-
+from django.http import JsonResponse
 from django.db.models import Count
 from eapp.models import *
 def index(request):
@@ -24,3 +24,10 @@ def checkout(request):
     return render(request, 'eapp/checkout.html')
 def contact(request):
     return render(request, 'eapp/contact.html')
+
+def get_product_data(request):
+    products = Product.objects.all().values(
+        'id', 'category__name', 'product_name', 'price', 'price_caption', 'rateing', 'image', 'deal_price'
+    )
+    product_list = list(products)
+    return JsonResponse({'products': product_list})
