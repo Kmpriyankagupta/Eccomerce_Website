@@ -16,8 +16,11 @@ def index(request):
 def shop(request):
     product = Product.objects.all()
     return render(request,'eapp/shop.html',{'product':product})
-def detail(request):
-    return render(request, 'eapp/detail.html')
+
+def detail(request,slug):
+    detail = Product.objects.filter(slug=slug)
+            
+    return render(request, 'eapp/detail.html',{'det'})
 def cart(request):
     return render(request, 'eapp/cart.html')
 def checkout(request):
@@ -27,7 +30,7 @@ def contact(request):
 
 def get_product_data(request):
     products = Product.objects.all().values(
-        'id', 'category__name', 'product_name', 'price', 'price_caption', 'rateing', 'image', 'deal_price'
-    )
+        'id', 'category__name', 'product_name', 'price', 'price_caption', 'rateing', 'image', 'deal_price',
+    'slug')
     product_list = list(products)
     return JsonResponse({'products': product_list})

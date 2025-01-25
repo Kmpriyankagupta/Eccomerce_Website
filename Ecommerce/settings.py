@@ -79,7 +79,7 @@ WSGI_APPLICATION = 'Ecommerce.wsgi.application'
 DATABASES = {
    'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'Ecommerce',  # Replace with your database name
+        'NAME': 'ecommerce',  # Replace with your database name
         'USER': 'priyanka',  # Replace with your PostgreSQL username
         'PASSWORD': '1234',  # Replace with your PostgreSQL password
         'HOST': 'localhost',  # Replace with your database host, if not local
