@@ -45,16 +45,19 @@ class Product(models.Model):
     )
     sort_des = models.CharField(max_length=100,blank=True, null=True)
     long_des = models.CharField(max_length=500,blank=True, null=True)
+    date1 = models.DateTimeField(auto_now=True)
     # quantity = models.IntegerField(default=0)
     
     def __str__(self):
             return self.product_name
         
 class Reviews(models.Model):
+    productid = models.ForeignKey(Product, on_delete=models.CASCADE,related_name="reviewc")
     rating = models.FloatField()
     mgs = models.CharField(max_length=200)
     name = models.CharField(max_length=100)
     email = models.EmailField()
+    date = models.DateTimeField(auto_now=True)
     def __str__(self):
         return self.name        
 # class Cart(models.Model):

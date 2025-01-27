@@ -16,11 +16,28 @@ def index(request):
 def shop(request):
     product = Product.objects.all()
     return render(request,'eapp/shop.html',{'product':product})
-
+from django.shortcuts import render, get_object_or_404
 def detail(request,slug):
-    detail = Product.objects.filter(slug=slug)
-            
-    return render(request, 'eapp/detail.html',{'det'})
+    details = get_object_or_404(Product, slug=slug)
+    related_product = Product.objects.filter(category=details.category)
+    # print('kkhhgg',related_product.reviewc)
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        rating = request.POST.get('rating')
+        email = request.POST.get('email')
+        yourreview = request.POST.get('yourreview')
+        review = Reviews.objects.create(
+            productid = details,
+            name=name,
+            rating=rating,
+            mgs=yourreview,
+            email =email,
+        )
+        review.save()
+    review_count = Reviews.objects.filter(productid=details).count()
+    reviews = Reviews.objects.filter(productid=details)
+    # print('jdfbjhdbf', )
+    return render(request, 'eapp/detail.html',{'details':details,'reviews':reviews, 'review_count':review_count,'related_product':related_product})
 def cart(request):
     return render(request, 'eapp/cart.html')
 def checkout(request):

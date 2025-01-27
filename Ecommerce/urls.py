@@ -10,7 +10,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',index),
     path('shop/',shop),
-    path('detail/', detail),
+    path('detail/<slug:slug>/', detail, name='detail'),
     path('cart/', cart),
     path('checkout/', checkout),
     path('contact/', contact),
